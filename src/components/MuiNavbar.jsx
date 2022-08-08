@@ -10,20 +10,21 @@ import {
   MenuItem,
 } from "@mui/material";
 import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useState } from "react";
 const MuiNavbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (e) => {
-    setAnchorEl(true);
+    setAnchorEl(e.currentTarget);
   };
   const handleClose = () => {
-      setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
   return (
     <AppBar>
       <Toolbar>
-        <IconButton size='large' edge='start' color='inherit' aria-label='logo'>
+        <IconButton size="large" edge="start" color="inherit" aria-label="logo">
           <CatchingPokemonIcon />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -31,26 +32,29 @@ const MuiNavbar = () => {
         </Typography>
         <Stack direction="row" spacing={2}>
           <Button color="inherit" variant="text">
-            About
+            Features
           </Button>
           <Button color="inherit" variant="text">
             Pricing
           </Button>
           <Button color="inherit" variant="text">
-            Contact
+            About
           </Button>
           <Button
-           color='inherit'
-           id='resources-button'
-           aria-controls={open ? 'resources-menu' : undefined}
-           aria-haspopup='true'
-           aria-expanded={open ? 'true' : undefined}
-           onClick={handleClick}>
+            color="inherit"
+            variant="text"
+            id="resources-button"
+            onClick={handleClick}
+            endIcon={<KeyboardArrowDownIcon />}
+          >
             Resources
+          </Button>
+          <Button color="inherit" variant="text">
+            Login
           </Button>
         </Stack>
         <Menu
-          id='resources-menu'
+          id="resources-menu"
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
@@ -61,9 +65,6 @@ const MuiNavbar = () => {
           transformOrigin={{
             vertical: 'top',
             horizontal: 'right'
-          }}
-          MenuListProps={{
-            'aria-labelledby': 'resources-button'
           }}
         >
           <MenuItem onClick={handleClose}>Blog</MenuItem>
